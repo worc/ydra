@@ -1,0 +1,32 @@
+{
+  "name": "pops",
+  "version": "0.0.0-ignored",
+  "private": true,
+  "description": "pair programming exercise for the in-office interview",
+  "main": "src/index.js",
+  "engines": {
+    "node": ">=10.9.0",
+    "npm": ">=6.2.0"
+  },
+  "scripts": {
+    "start": "webpack-dev-server --config webpack.config.js --hot --inline",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1",
+    "styled-components": "^3.4.5",
+    "webpack": "^4.17.1",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.6"
+  }
+}
