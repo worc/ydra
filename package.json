@@ -10,7 +10,8 @@
   },
   "scripts": {
     "start": "webpack-dev-server --config webpack.config.js --hot --inline",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --recursive src/**/*.test.js",
+    "watch": "mocha --watch --recursive src/**/*.test.js"
   },
   "author": "",
   "license": "MIT",
@@ -20,6 +21,7 @@
     "babel-loader": "^7.1.4",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
+    "mocha": "^5.2.0",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-router": "^4.3.1",
