@@ -1,3 +1,4 @@
-token.js
+src/token.js
 
 .idea/
+node_modules/
