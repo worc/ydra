@@ -2,11 +2,12 @@
 const path = require('path')
 
 const DIST = path.join(__dirname, 'dist')
+const STATIC = path.join(__dirname, 'static')
 
 module.exports = {
     mode: 'development',
     devServer: {
-        contentBase: DIST,
+        contentBase: STATIC,
         historyApiFallback: true,
     },
     entry: [
@@ -16,8 +17,8 @@ module.exports = {
         rules: [
             {
                 test: /\.js$/,
-                exclude: '/node_modules',
                 loader: 'babel-loader',
+                exclude: /node_modules/,
                 options: {
                     presets: [ 'env', 'react' ]
                 }

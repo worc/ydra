@@ -11,7 +11,7 @@
   "scripts": {
     "start": "webpack-dev-server --config webpack.config.js --hot --inline",
     "test": "mocha --recursive src/**/*.test.js",
-    "watch": "npm run test --watch"
+    "watch": "npm run test -- --watch"
   },
   "author": "",
   "license": "MIT",
@@ -19,6 +19,8 @@
     "axios": "^0.18.0",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.4",
+    "babel-plugin-transform-regenerator": "^6.26.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "enzyme": "^3.5.0",
@@ -26,8 +28,11 @@
     "mocha": "^5.2.0",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
+    "react-redux": "^5.0.7",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
+    "redux": "^4.0.0",
+    "redux-saga": "^0.16.0",
     "styled-components": "^3.4.5",
     "webpack": "^4.17.1",
     "webpack-cli": "^3.1.0",
