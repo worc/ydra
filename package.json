@@ -9,7 +9,7 @@
     "npm": ">=6.2.0"
   },
   "scripts": {
-    "start": "webpack-dev-server --config webpack.config.js --hot --inline",
+    "start": "npm run watch & webpack-dev-server --config webpack.config.js --hot --inline",
     "test": "mocha --recursive src/**/*.test.js",
     "watch": "npm run test -- --watch"
   },
