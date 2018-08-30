@@ -14,8 +14,8 @@ Drivers should switch every 30 minutes. Code should be committed to a branch off
 
 1. Install the version of Node and NPM listed in package.json
 2. Install dependencies
-3. Create a Github personal access token--rate limits are pretty low without it: https://github.com/settings/tokens
-4. Start the test watcher
+3. Create a Github personal access token and add it to the project--rate limits are pretty low without it: https://github.com/settings/tokens
+4. Start the dev server with `npm run start`
 
 ## Coding Exercise
 

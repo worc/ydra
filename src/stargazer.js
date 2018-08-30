@@ -15,12 +15,18 @@ class Stargazer extends React.Component {
         }
     }
 
+    handleKeyUp(e) {
+        if(e.key === 'Enter') {
+            this.props.requestStargazers(this.state.org, this.state.repo)
+        }
+    }
+
     render() {
         return (
             <Container>
                 <h1>stargazer</h1>
-                <input value={ this.state.org } onChange={ (e) => this.setState({ org: `${ e.target.value }`}) } />
-                <input value={ this.state.repo } onChange={ (e) => this.setState({ repo: `${ e.target.value }`}) } />
+                <input value={ this.state.org } placeholder='Organization' onChange={ (e) => this.setState({ org: `${ e.target.value }`}) } />
+                <input value={ this.state.repo } placeholder='Repository' onChange={ (e) => this.setState({ repo: `${ e.target.value }`}) } onKeyUp={ (e) => this.handleKeyUp(e) }/>
                 <input type='submit' onClick={ () => this.props.requestStargazers(this.state.org, this.state.repo) }/>
                 <GazerGrid>{ this.props.gazers.map(gazer => (
                     <Gazer key={ gazer.id }>
