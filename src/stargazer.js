@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, {keyframes} from 'styled-components'
 import axios from 'axios'
 import { connect } from 'react-redux'
 import { take, call, put, fork } from 'redux-saga/effects'
@@ -10,8 +10,22 @@ class Stargazer extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            org: '',
-            repo: '',
+            org: 'facebook',
+            repo: 'react',
+            play: false,
+        }
+    }
+    
+    componentDidMount () {
+        this.audioRef = React.createRef()
+        this.props.requestStargazers(this.state.org, this.state.repo)
+    }
+    
+    componentDidUpdate() {
+        if(this.state.play) {
+            this.audioRef.current.play()    
+        } else {
+            this.audioRef.current.pause()
         }
     }
 
@@ -20,17 +34,30 @@ class Stargazer extends React.Component {
             this.props.requestStargazers(this.state.org, this.state.repo)
         }
     }
+    
+    startTheMusic() {
+        this.setState({
+            play: true
+        })
+    }
+    
+    pauseTheMusic() {
+        this.setState({ 
+            play: false
+        })
+    }
 
     render() {
         return (
             <Container>
-                <h1>stargazer</h1>
+                <audio ref={ this.audioRef } src='/ledisko.mp3' autoPlay />
+                <Marquee src='/sparkle.gif' />
                 <input value={ this.state.org } placeholder='Organization' onChange={ (e) => this.setState({ org: `${ e.target.value }`}) } />
                 <input value={ this.state.repo } placeholder='Repository' onChange={ (e) => this.setState({ repo: `${ e.target.value }`}) } onKeyUp={ (e) => this.handleKeyUp(e) }/>
                 <input type='submit' onClick={ () => this.props.requestStargazers(this.state.org, this.state.repo) }/>
                 <GazerGrid>{ this.props.gazers.map(gazer => (
-                    <Gazer key={ gazer.id }>
-                        <Avatar src={ gazer.avatar_url } />
+                    <Gazer onMouseEnter={ () => this.startTheMusic() } onMouseLeave={ () => this.pauseTheMusic() } key={ gazer.id }>
+                        <Avatar play={this.state.play} src={ gazer.avatar_url } />
                         <Name>{ gazer.login }</Name>
                     </Gazer>
                 ))}
@@ -96,8 +123,25 @@ const mapDispatchToProps = dispatch => ({
 
 export default connect(mapStateToProps, mapDispatchToProps)(Stargazer)
 
+const skew = keyframes`
+  0% {transform: skew(0deg, 0deg);}
+  100% {transform: skew(360deg, 0deg);}
+`
+
+const marquee = keyframes`
+  0% {transform: translate(0%, 0%);}
+  100% {transform: translate(100%, 0%);}
+`
+
 const Container = styled.div`
-  font-family: 'Lato', sans-serif;
+  font-family: 'Comic Sans MS', sans-serif;
+  background: linear-gradient(to right,
+      red, orange, yellow, green, blue, indigo, violet);
+`
+
+const Marquee = styled.img`
+  overflow-style: marquee-line;
+  animation: ${marquee} 5s linear infinite;
 `
 
 const GazerGrid = styled.div`
@@ -120,6 +164,7 @@ const Avatar = styled.img`
   z-index: 0;
   height: 100px;
   width: 100px;
+  animation: ${props => props.play ? skew : '' } 1s linear infinite;
 `
 
 const Name = styled.div`
